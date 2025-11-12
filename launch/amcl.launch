@@ -1,0 +1,25 @@
+<launch>
+  <arg name="map_file" default="/home/administrator/test_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <param name="use_map_topic" value="true"/>
+  <param name="odom_model_type" value="diff"/>
+  <param name="base_frame_id" value="base_link"/>
+  <param name="odom_frame_id" value="odom"/>
+  <param name="global_frame_id" value="map"/>
+  <param name="scan_topic" value="/obstacle_scan"/>
+
+  <node pkg="amcl" type="amcl" name="amcl" output="screen">
+    <param name="min_particles" value="500"/>
+    <param name="max_particles" value="3000"/>
+    <param name="update_min_d" value="0.2"/>
+    <param name="update_min_a" value="0.2"/>
+    <param name="resample_interval" value="1"/>
+    <param name="laser_max_beams" value="60"/>
+    <param name="laser_max_range" value="10.0"/>
+    <param name="odom_alpha1" value="0.2"/>
+    <param name="odom_alpha2" value="0.2"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.2"/>
+  </node>
+</launch>
