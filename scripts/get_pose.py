@@ -8,7 +8,7 @@ def pose_callback(msg):
     x = msg.pose.position.x
     y = msg.pose.position.y
 
-    # Extraire orientation (quaternion -> angle)
+    # Extraire orientation
     q = msg.pose.orientation
     (_, _, yaw) = euler_from_quaternion([q.x, q.y, q.z, q.w])
 
